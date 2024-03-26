@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int vec[300001];
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n, m;
+    cin >> n >> m;
+
+    for(int i = 1; i <= n; ++ i){
+        cin >> vec[i];
+    }
+    
+    sort(vec + 1, vec + 1 + n);
+
+    for(int i = 1; i <= m; ++ i){
+        int x, y;
+        cin >> x >> y;
+        if(x <= vec[n]) {
+            auto st = lower_bound(vec + 1, vec + 1 + n, x) - vec;
+            auto dr = upper_bound(vec + 1, vec + 1 + n, y) - vec;
+            cout << dr - st << '\n';
+            continue;
+        }
+
+        cout << 0 << '\n';
+    }
+
+    return 0;
+}
